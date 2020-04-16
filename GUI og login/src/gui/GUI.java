@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 public class GUI {
 
     
-    public static void guiMain() {
+    public void guiMain() {
         // TODO code application logic here
         int x = 900;
         int y = 800;
