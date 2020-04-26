@@ -32,12 +32,18 @@ public class Laerer extends JFrame {
     private JTabbedPane afleveringer;
     private JScrollPane scrPane1,scrPane2;
 
-    public Laerer(int x, int y){
-        creatComponents(x,y);
+    public Laerer(){
+        
     }
 
-    private void creatComponents(int x, int y) {
+    
+
+    public void creatComponents(int x, int y) {
         
+        setTitle("Ludus kopi - Lærer");
+        setSize(x,y);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         
         Object [][] data = {
             {"Matematik","02.01.2000","TP","Opgave",""},
@@ -113,9 +119,8 @@ public class Laerer extends JFrame {
         afleveringer.setTabComponentAt(1, tab2Title);
         
         /*combo box
-        /button
-        /JTable (til at vise database)
-        /2 lærer og 2 elever
+        /JTable (til at vise database)                          (tjek)
+        /2 lærer og 2 elever 
         /popup box til indput til databasen med kalender
         /
         */
