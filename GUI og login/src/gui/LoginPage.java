@@ -77,15 +77,23 @@ public class LoginPage extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Hej");
-                String passInCode = "1234";
-                Object user = "Hej";
+                String passInCodeLære = "1234";
+                Object userLære = "Hej";
+                
+                String passInCodeElev = "4321";
+                Object userElev = "Jeg";
                 
                 char[] pass = password.getPassword();
 
-                if (String.valueOf(pass).equals(passInCode) && username.getText().equals(user)){
-                    System.out.println("Dav");
+                if (String.valueOf(pass).equals(passInCodeLære) && username.getText().equals(userLære)){
                     Laerer laerer = new Laerer();
                     laerer.creatComponents(x,y);
+                    dispose();
+                }
+                
+                if (String.valueOf(pass).equals(passInCodeElev) && username.getText().equals(userElev)){
+                    Elev elev = new Elev();
+                    elev.creatComponents(x,y);
                     dispose();
                 }
             }

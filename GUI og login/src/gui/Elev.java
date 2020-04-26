@@ -6,29 +6,74 @@
 package gui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Tobias
  */
-public class Elev {
+public class Elev extends JFrame{
     private JPanel panelAfsluttet, panelAktive;
     private JLabel label1;
     private JButton knap1;
     private JButton knap2;
     private JTabbedPane afleveringer;
+    private JTable afleveringerAfleveret,afleveringerIkkeAfleveret;
 
-    public Elev(int x, int y){
-        creatComponents(x,y);
+    public Elev(){
+        
     }
 
-    private void creatComponents(int x, int y) {
+    public void creatComponents(int x, int y) {
+        setTitle("Ludus kopi - Elev");
+        setSize(x,y);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        
+        
+        
+        Object [][] data = {
+            {"Matematik","02.01.2000","TP","Opgave",""},
+            {"Matematik","02.01.2001","TP","Opgave",""},
+            {"Matematik","02.01.2002","TP","Opgave",""},
+            {"Matematik","02.01.2003","TP","Opgave",""},
+            {"Matematik","02.01.2004","TP","Opgave",""},
+            {"Matematik","02.01.2005","TP","Opgave",""},
+            {"Matematik","02.01.2006","TP","Opgave",""},
+            {"Matematik","02.01.2007","TP","Opgave",""},
+            {"Matematik","02.01.2007","TP","Opgave",""}
+        };
+
+
+        
+        String[] columnNames = {
+          "First Name",
+          "Date",
+          "Teacher",
+          "Assignment",
+          "Answer"
+        }; 
+        
+        DefaultTableModel ting = new DefaultTableModel(columnNames,0);
+        ArrayList<Object[]> temp = new ArrayList<>(Arrays.asList(data));
+        
+        for (int i = 0; i < temp.size(); i++){
+            Object[] row = temp.get(i);
+            ting.addRow(row);
+        }
+        
         afleveringer = new JTabbedPane();
         add(afleveringer);
+        
+        
         
         panelAktive = new JPanel();
         panelAfsluttet = new JPanel();
@@ -36,6 +81,10 @@ public class Elev {
         afleveringer.addTab("", panelAktive);
         afleveringer.addTab("", panelAfsluttet);
         
+        afleveringerIkkeAfleveret = new JTable(ting);
+        afleveringerAfleveret = new JTable(ting);
+        panelAktive.add(afleveringerIkkeAfleveret);
+        panelAfsluttet.add(afleveringerAfleveret);
         
         /*Kode hjulpet med at opfylde det udsene vi ville have til vores program
         /https://stackoverflow.com/questions/9052784/set-size-of-tab-in-jtabbedpane
@@ -59,9 +108,5 @@ public class Elev {
         */
         
         
-    }
-
-    private void add(JTabbedPane afleveringer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -99,7 +99,7 @@ public class Laerer extends JFrame {
         panelAfsluttet.add(scrPane2);
         
         
-        knap1.setBounds(x/2, y-200, 100, 100);
+        knap1.setBounds(x/2, y-200, 150, 100);
         
         
         
@@ -120,7 +120,7 @@ public class Laerer extends JFrame {
         
         /*combo box
         /JTable (til at vise database)                          (tjek)
-        /2 lærer og 2 elever 
+        /2 lærer og 2 elever                                    (tjek)
         /popup box til indput til databasen med kalender
         /
         */
