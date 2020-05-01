@@ -6,6 +6,8 @@
 package gui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JButton;
@@ -16,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 
 
@@ -27,10 +30,10 @@ public class Laerer extends JFrame {
     private JPanel panelAfsluttet, panelAktive;
     private JLabel label1;
     private JButton knap1;
-    private JButton knap2;
     private JTable afleveringerIkkeAfleveret, afleveringerAfleveret;
     private JTabbedPane afleveringer;
     private JScrollPane scrPane1,scrPane2;
+
 
     public Laerer(){
         
@@ -83,11 +86,20 @@ public class Laerer extends JFrame {
         
         afleveringerIkkeAfleveret = new JTable(ting);
         afleveringerAfleveret = new JTable(ting);
+        
+        
+        
         knap1 = new JButton("Tilføj aflevering");
-        knap2 = new JButton();
+        knap1.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LaererPopup popup = new LaererPopup();
+                popup.koer();
+            }
+        });
         scrPane1 = new JScrollPane();
         scrPane2 = new JScrollPane();
-        
+        add(afleveringer);
         afleveringer.addTab("", panelAktive);
         afleveringer.addTab("", panelAfsluttet);
         panelAktive.add(afleveringerIkkeAfleveret);
