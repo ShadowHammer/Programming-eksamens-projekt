@@ -6,6 +6,8 @@
 package gui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JButton;
@@ -23,8 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class Elev extends JFrame{
     private JPanel panelAfsluttet, panelAktive;
     private JLabel label1;
-    private JButton knap1;
-    private JButton knap2;
+    private JButton aflever;
     private JTabbedPane afleveringer;
     private JTable afleveringerAfleveret,afleveringerIkkeAfleveret;
 
@@ -72,7 +73,7 @@ public class Elev extends JFrame{
         
         afleveringer = new JTabbedPane();
         add(afleveringer);
-        
+        aflever = new JButton();
         
         
         panelAktive = new JPanel();
@@ -85,6 +86,24 @@ public class Elev extends JFrame{
         afleveringerAfleveret = new JTable(ting);
         panelAktive.add(afleveringerIkkeAfleveret);
         panelAfsluttet.add(afleveringerAfleveret);
+        panelAktive.add(aflever);
+        
+        panelAktive.setLayout(null);
+        panelAfsluttet.setLayout(null);
+        
+        afleveringerIkkeAfleveret.setSize(600, 400);
+        afleveringerIkkeAfleveret.setAutoResizeMode(5);
+        
+        afleveringerAfleveret.setSize(600, 400);
+        afleveringerAfleveret.setAutoResizeMode(5);
+        
+        aflever.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ElevPopup popup = new ElevPopup();
+                popup.koer();
+            }
+        });
         
         /*Kode hjulpet med at opfylde det udsene vi ville have til vores program
         /https://stackoverflow.com/questions/9052784/set-size-of-tab-in-jtabbedpane
@@ -99,6 +118,8 @@ public class Elev extends JFrame{
         afleveringer.setTabComponentAt(0, tab1Title);
         afleveringer.setTabComponentAt(1, tab2Title);
         
+        aflever.setBounds(x/2, y-200, 150, 100);
+        aflever.setText("Aflever");
         /*combo box
         /button
         /JTable (til at vise database)

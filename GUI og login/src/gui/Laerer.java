@@ -14,11 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JOptionPane;
 
 
 
@@ -28,11 +26,9 @@ import javax.swing.JOptionPane;
  */
 public class Laerer extends JFrame {
     private JPanel panelAfsluttet, panelAktive;
-    private JLabel label1;
-    private JButton knap1;
+    private JButton opretAflevering;
     private JTable afleveringerIkkeAfleveret, afleveringerAfleveret;
     private JTabbedPane afleveringer;
-    private JScrollPane scrPane1,scrPane2;
 
 
     public Laerer(){
@@ -83,22 +79,22 @@ public class Laerer extends JFrame {
         panelAktive = new JPanel();
         panelAktive.setLayout(null);
         panelAfsluttet = new JPanel();
+        panelAfsluttet.setLayout(null);
         
         afleveringerIkkeAfleveret = new JTable(ting);
         afleveringerAfleveret = new JTable(ting);
         
         
         
-        knap1 = new JButton("Tilføj aflevering");
-        knap1.addActionListener(new ActionListener(){
+        opretAflevering = new JButton("Tilføj aflevering");
+        opretAflevering.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 LaererPopup popup = new LaererPopup();
                 popup.koer();
             }
         });
-        scrPane1 = new JScrollPane();
-        scrPane2 = new JScrollPane();
+        
         add(afleveringer);
         afleveringer.addTab("", panelAktive);
         afleveringer.addTab("", panelAfsluttet);
@@ -106,12 +102,14 @@ public class Laerer extends JFrame {
         panelAfsluttet.add(afleveringerAfleveret);
         afleveringerIkkeAfleveret.setSize(600, 400);
         afleveringerIkkeAfleveret.setAutoResizeMode(5);
-        panelAktive.add(knap1);
-        panelAktive.add(scrPane1);
-        panelAfsluttet.add(scrPane2);
+        
+        afleveringerAfleveret.setSize(600, 400);
+        afleveringerAfleveret.setAutoResizeMode(5);
+        panelAktive.add(opretAflevering);
         
         
-        knap1.setBounds(x/2, y-200, 150, 100);
+        
+        opretAflevering.setBounds(x/2, y-200, 150, 100);
         
         
         

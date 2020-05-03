@@ -17,26 +17,26 @@ import javax.swing.JTextField;
  *
  * @author Tobias
  */
-public class LaererPopup extends JFrame {
-    private JLabel fil,dato,fag,overskrift,filtype;
+public class ElevPopup extends JFrame{
+    private JLabel fil,dato,fagID,overskrift,filtype;
     private JTextField fagField,datoField, filField,filtypeField;
     private JPanel popupPanel;
-    private JButton opret;
+    private JButton aflever;
     
-    public LaererPopup(){
+    public ElevPopup(){
         
     }
     public void koer(){
         
     
-        setTitle("Ludus kopi - Lærer Popup");
-        setSize(300,345);
+        setTitle("Ludus kopi - Elev Popup");
+        setSize(300,205);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 
         fil = new JLabel();
         dato = new JLabel();
-        fag = new JLabel();
+        fagID = new JLabel();
         overskrift = new JLabel();
         filtype = new JLabel();
 
@@ -45,75 +45,53 @@ public class LaererPopup extends JFrame {
         filField = new JTextField();
         filtypeField = new JTextField();
 
-        opret = new JButton();
+        aflever = new JButton();
 
         popupPanel = new JPanel();
         add(popupPanel);
         popupPanel.setLayout(null);
 
         popupPanel.add(fil);
-        popupPanel.add(dato);
-        popupPanel.add(fag);
+        popupPanel.add(fagID);
         popupPanel.add(fagField);
-        popupPanel.add(datoField);
         popupPanel.add(filField);
-        popupPanel.add(filtypeField);
-        popupPanel.add(filtype);
+
         
-        popupPanel.add(opret);
+        popupPanel.add(aflever);
         popupPanel.add(overskrift);
 
         overskrift.setBounds(100, 10, 150, 20);
-        overskrift.setText("Opret aflevering");
+        overskrift.setText("Aflever aflevering");
 
-
-        fag.setBounds(50, 30, 200, 20);
-        fag.setText("Skriv faget som aflevering er i");
+        fagID.setBounds(50, 30, 200, 20);
+        fagID.setText("Skriv faget som aflevering er i");
         fagField.setBounds(50, 50, 200, 25);
         fagField.setToolTipText("f.eks.: Matematik");
 
-
-        dato.setBounds(50, 80, 200, 20);
-        dato.setText("Skriv datoen for afleveringen");
-        datoField.setBounds(50, 100, 200, 25);
-        datoField.setToolTipText("f.eks.: 11-05-2020");
-
-        fil.setBounds(50, 130, 200, 25);
+        fil.setBounds(50, 70, 200, 25);
         fil.setText("Skriv stien til filen du vil indsætte");
-        filField.setBounds(50, 150, 200, 25);
+        filField.setBounds(50, 90, 200, 25);
         filField.setToolTipText("Den komplette sti til filen");
-        
-        
-        filtype.setBounds(50,180,200,25);
-        filtype.setText("Skriv de tiladte filtyper");
-        filtypeField.setBounds(50, 200, 200, 25);
-        filtypeField.setToolTipText("f.eks.: pdf,docx,png");
 
 
-        opret.setBounds(100,240,100,30);
-        opret.setText("Opret");
+
+        aflever.setBounds(100,120,100,30);
+        aflever.setText("aflever");
         
 
-        opret.addActionListener(new ActionListener(){
+        aflever.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     String faget = "";
                     faget = fagField.getText();
-                    
-                    String datoen = "";
-                    datoen = datoField.getText();
 
                     String filen = "";
                     filen = filField.getText();
                     
-                    String filtyper = "";
-                    filtyper = filtypeField.getText();
                     System.out.println(faget);
-                    System.out.println(datoen);
                     System.out.println(filen);
-                    System.out.println(filtyper);
+
                 }
             });
-    
 }
 }
