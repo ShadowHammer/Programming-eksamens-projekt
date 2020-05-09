@@ -24,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Elev extends JFrame{
     private JPanel panelAfsluttet, panelAktive;
-    private JLabel label1;
     private JButton aflever;
     private JTabbedPane afleveringer;
     private JTable afleveringerAfleveret,afleveringerIkkeAfleveret;

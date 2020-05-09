@@ -18,8 +18,8 @@ import javax.swing.JTextField;
  * @author Tobias
  */
 public class ElevPopup extends JFrame{
-    private JLabel fil,dato,fagID,overskrift,filtype;
-    private JTextField fagField,datoField, filField,filtypeField;
+    private JLabel fil,fagID,overskrift;
+    private JTextField fagField, filField;
     private JPanel popupPanel;
     private JButton aflever;
     
@@ -35,15 +35,11 @@ public class ElevPopup extends JFrame{
         setVisible(true);
 
         fil = new JLabel();
-        dato = new JLabel();
         fagID = new JLabel();
         overskrift = new JLabel();
-        filtype = new JLabel();
 
         fagField = new JTextField();
-        datoField = new JTextField();
         filField = new JTextField();
-        filtypeField = new JTextField();
 
         aflever = new JButton();
 
