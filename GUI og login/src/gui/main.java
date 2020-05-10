@@ -13,21 +13,7 @@ import java.util.Scanner;
  */
 public class main {
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        DatabaseHandler DB = new DatabaseHandler();
-        
-        while(true){
-            String str = sc.next();
-
-            if (str.equals("write")){
-                DB.uploadAssignment( "Matematik", "5/5/2020","C:\\Users\\willy\\Documents\\NetBeansProjects\\Programming-eksamens-projekt\\Beskrivelser\\y.docx");
-            }else if (str.equals("read")){
-                DB.downloadFile(2, "C:/Users//willy//Documents/NetBeansProjects/Programming-eksamens-projekt/Beskrivelser/",true);    
-            }else if (str.equals("handin")){
-                DB.handIn(2,"William" , "C:\\Users\\willy\\Documents\\NetBeansProjects\\Programming-eksamens-projekt\\Beskrivelser\\mat aflevering.pdf");
-            }else if (str.equals("close")){
-                break;
-            }
-        }
+        GUI gui = new GUI();
+        gui.guiMain();
     }
 }
