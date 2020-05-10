@@ -21,13 +21,15 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Tobias
+ * @auther William
  */
 public class Elev extends JFrame{
     private JPanel panelAfsluttet, panelAktive;
     private JButton aflever,download;
     private JTabbedPane afleveringer;
-    private JTable afleveringerAfleveret,afleveringerIkkeAfleveret;
-
+    public JTable afleveringerAfleveret,afleveringerIkkeAfleveret;
+    private DatabaseHandler DB = new DatabaseHandler();
+    
     public Elev(){
         
     }
@@ -55,15 +57,20 @@ public class Elev extends JFrame{
 
         
         String[] columnNames = {
-          "First Name",
-          "Date",
-          "Teacher",
+          "Fag",
+          "Dato",
           "Assignment",
           "Answer"
         }; 
         
-        DefaultTableModel ting = new DefaultTableModel(columnNames,0);
-        ArrayList<Object[]> temp = new ArrayList<>(Arrays.asList(data));
+        DefaultTableModel ting = new DefaultTableModel(columnNames,0) {
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        
+        ArrayList<Object[]> temp = DB.getAssignmentTable();
         
         for (int i = 0; i < temp.size(); i++){
             Object[] row = temp.get(i);
@@ -102,7 +109,7 @@ public class Elev extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 ElevPopup popup = new ElevPopup();
-                popup.koer();
+                popup.koer(afleveringerIkkeAfleveret.getSelectedRow());
             }
         });
         
@@ -124,15 +131,17 @@ public class Elev extends JFrame{
         
         download.setBounds(x/2-300, y-200, 150, 100);
         download.setText("Hent baskrivelse");
+        
         download.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 DownloadElevPopup down = new DownloadElevPopup();
-                down.koer();
+                down.koer(afleveringerIkkeAfleveret.getSelectedRow());
             }
         });
         
         
         
     }
+    
 }

@@ -23,13 +23,14 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Tobias
+ * @author William
  */
 public class Laerer extends JFrame {
     private JPanel panelAfsluttet, panelAktive;
     private JButton opretAflevering, download;
     private JTable afleveringerIkkeAfleveret, afleveringerAfleveret;
     private JTabbedPane afleveringer;
-
+    private DatabaseHandler DB = new DatabaseHandler();
 
     public Laerer(){
         
@@ -59,15 +60,19 @@ public class Laerer extends JFrame {
 
         
         String[] columnNames = {
-          "First Name",
-          "Date",
-          "Teacher",
-          "Assignment",
-          "Answer"
+            "Fag",
+            "Dato",
+            "Assignment",
+            "Answer"
         }; 
         
-        DefaultTableModel ting = new DefaultTableModel(columnNames,0);
-        ArrayList<Object[]> temp = new ArrayList<>(Arrays.asList(data));
+        DefaultTableModel ting = new DefaultTableModel(columnNames,0) {
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        ArrayList<Object[]> temp = DB.getAssignmentTable();
         
         for (int i = 0; i < temp.size(); i++){
             Object[] row = temp.get(i);
@@ -93,14 +98,24 @@ public class Laerer extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 LaererPopup popup = new LaererPopup();
                 popup.koer();
+                
             }
         });
+        
+        
         
         download.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                DownloadLaererPopup down = new DownloadLaererPopup();
-                down.koer();
+                
+                int curRow = afleveringerAfleveret.getSelectedRow();
+                if (curRow == -1){
+                    
+                }else{
+                    DownloadLaererPopup down = new DownloadLaererPopup();
+                    down.koer(afleveringerAfleveret.getSelectedRow());
+                }
+                
             }
         });
         

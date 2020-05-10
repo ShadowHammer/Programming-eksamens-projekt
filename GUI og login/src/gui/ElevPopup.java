@@ -16,17 +16,19 @@ import javax.swing.JTextField;
 /**
  *
  * @author Tobias
+ * @author William
  */
 public class ElevPopup extends JFrame{
-    private JLabel fil,fagID,overskrift;
-    private JTextField fagField, filField;
+    private JLabel fil,elevNavn,overskrift;
+    private JTextField elevField, filField;
     private JPanel popupPanel;
     private JButton aflever;
+    private DatabaseHandler DB = new DatabaseHandler();
     
     public ElevPopup(){
         
     }
-    public void koer(){
+    public void koer(int selectedRow){
         
     
         setTitle("Ludus kopi - Elev Popup");
@@ -35,10 +37,10 @@ public class ElevPopup extends JFrame{
         setVisible(true);
 
         fil = new JLabel();
-        fagID = new JLabel();
+        elevNavn = new JLabel();
         overskrift = new JLabel();
 
-        fagField = new JTextField();
+        elevField = new JTextField();
         filField = new JTextField();
 
         aflever = new JButton();
@@ -48,8 +50,8 @@ public class ElevPopup extends JFrame{
         popupPanel.setLayout(null);
 
         popupPanel.add(fil);
-        popupPanel.add(fagID);
-        popupPanel.add(fagField);
+        popupPanel.add(elevNavn);
+        popupPanel.add(elevField);
         popupPanel.add(filField);
 
         
@@ -59,10 +61,10 @@ public class ElevPopup extends JFrame{
         overskrift.setBounds(100, 10, 150, 20);
         overskrift.setText("Aflever aflevering");
 
-        fagID.setBounds(50, 30, 200, 20);
-        fagID.setText("Skriv faget som aflevering er i");
-        fagField.setBounds(50, 50, 200, 25);
-        fagField.setToolTipText("f.eks.: Matematik");
+        elevNavn.setBounds(50, 30, 200, 20);
+        elevNavn.setText("Skriv elevens navn");
+        elevField.setBounds(50, 50, 200, 25);
+        elevField.setToolTipText("f.eks.: William");
 
         fil.setBounds(50, 70, 200, 25);
         fil.setText("Skriv stien til filen du vil indsætte");
@@ -78,15 +80,12 @@ public class ElevPopup extends JFrame{
         aflever.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String faget = "";
-                    faget = fagField.getText();
-
-                    String filen = "";
-                    filen = filField.getText();
+                    String navn = elevField.getText();
+                    String filen = filField.getText();
                     
-                    System.out.println(faget);
+                    //System.out.println(faget);
                     System.out.println(filen);
-
+                    DB.handIn(selectedRow, navn, filen);
                 }
             });
 }

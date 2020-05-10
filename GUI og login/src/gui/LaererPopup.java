@@ -22,6 +22,7 @@ public class LaererPopup extends JFrame {
     private JTextField fagField,datoField, filField,filtypeField;
     private JPanel popupPanel;
     private JButton opret;
+    private DatabaseHandler DB = new DatabaseHandler();
     
     public LaererPopup(){
         
@@ -108,6 +109,9 @@ public class LaererPopup extends JFrame {
                     
                     String filtyper = "";
                     filtyper = filtypeField.getText();
+                    
+                    DB.uploadAssignment(faget, datoen, filen);
+                    
                     System.out.println(faget);
                     System.out.println(datoen);
                     System.out.println(filen);
