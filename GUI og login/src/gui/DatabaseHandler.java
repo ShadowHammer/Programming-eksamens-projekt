@@ -126,6 +126,7 @@ public class DatabaseHandler {
      *
      * @param assignmentID
      * @param assignmentPATH
+     * the handIn method takes an assignmentID a name and a PATH to Download folder
      */
     public void handIn(int assignmentID, String pupil, String assignmentPATH){
         String sql = "INSERT INTO besvarelser (elev, besvarelse, filnavn, ext, opgaveID) VALUES (?,?,?,?,?);";
@@ -185,7 +186,7 @@ public class DatabaseHandler {
             if(!isDescribtion){
                 downloadAnswers(destPATH,rs);
             }else{
-                File file = new File(destPATH + "/" + name + rs.getString("ext"));
+                File file = new File(destPATH+ "/" + name + rs.getString("ext"));
                 fos = new FileOutputStream(file);
                 System.out.println("Writing BLOB to file " + file.getAbsolutePath());
                 InputStream input = rs.getBinaryStream(column);    
