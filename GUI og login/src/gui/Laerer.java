@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Laerer extends JFrame {
     private JPanel panelAfsluttet, panelAktive;
-    private JButton opretAflevering;
+    private JButton opretAflevering, download;
     private JTable afleveringerIkkeAfleveret, afleveringerAfleveret;
     private JTabbedPane afleveringer;
 
@@ -87,6 +87,7 @@ public class Laerer extends JFrame {
         
         
         opretAflevering = new JButton("Tilføj aflevering");
+        download = new JButton("Download aflevering");
         opretAflevering.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,11 +96,20 @@ public class Laerer extends JFrame {
             }
         });
         
+        download.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DownloadLaererPopup down = new DownloadLaererPopup();
+                down.koer();
+            }
+        });
+        
         add(afleveringer);
         afleveringer.addTab("", panelAktive);
         afleveringer.addTab("", panelAfsluttet);
         panelAktive.add(afleveringerIkkeAfleveret);
         panelAfsluttet.add(afleveringerAfleveret);
+        panelAfsluttet.add(download);
         afleveringerIkkeAfleveret.setSize(600, 400);
         afleveringerIkkeAfleveret.setAutoResizeMode(5);
         
@@ -110,6 +120,7 @@ public class Laerer extends JFrame {
         
         
         opretAflevering.setBounds(x/2, y-200, 150, 100);
+        download.setBounds(x/2, y-200, 150, 100);
         
         
         
@@ -127,13 +138,6 @@ public class Laerer extends JFrame {
         
         afleveringer.setTabComponentAt(0, tab1Title);
         afleveringer.setTabComponentAt(1, tab2Title);
-        
-        /*combo box
-        /JTable (til at vise database)                          (tjek)
-        /2 lærer og 2 elever                                    (tjek)
-        /popup box til indput til databasen med kalender
-        /
-        */
         
         add(afleveringer);
     }
