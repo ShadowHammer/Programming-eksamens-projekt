@@ -20,7 +20,11 @@ public class Loginsystem {
 
     /**
      * @param args the command line arguments
+     * 
+     * Jeg har brugt følgende link til hjælp med at lave kryptering af kodeord
+     * https://www.javaguides.net/2020/02/java-sha-256-hash-with-salt-example.html
      */
+    // jeg laver 3 arraylists
     public static ArrayList<byte[]> saltArray = new ArrayList<>();
     public static ArrayList<String>passwordArray = new ArrayList<>();
     public static ArrayList<byte[]>passwords = new ArrayList<>();
@@ -30,22 +34,20 @@ public class Loginsystem {
         try {
             passwordArray.add(getPassword());
             getSalt();
-            getSecurePassword(passwordArray.get(0), saltArray.get(0));
+            getSikreKodeord(passwordArray.get(0), saltArray.get(0));
             
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Loginsystem.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println(passwordArray);
-        System.out.println(saltArray);
-        System.out.println(passwords);
-
     }
-    public static byte[] getSecurePassword(String password, byte[] salt){
+    
+    //Det tager passwordet og hasher det til at starte med 
+    public static byte[] getSikreKodeord(String password, byte[] salt){
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(salt);
-            byte[] bytes = md.digest(password.getBytes());
+            MessageDigest kryptering = MessageDigest.getInstance("SHA-256");
+            kryptering.update(salt);
+            byte[] bytes = kryptering.digest(password.getBytes());
             passwords.add(bytes);
             return bytes;
         } catch (NoSuchAlgorithmException ex) { 
@@ -54,6 +56,8 @@ public class Loginsystem {
         
         return null;
     }
+    
+    //her laver jeg saltet som bruges til kodeordet
     private static byte[] getSalt() throws NoSuchAlgorithmException {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[64];
@@ -61,7 +65,7 @@ public class Loginsystem {
         saltArray.add(salt);
         return salt;
     }
-
+    //Her kommer kodeordet fra kodeordet
     private static String getPassword() {
         
         String x = "1234"; 
