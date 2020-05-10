@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Elev extends JFrame{
     private JPanel panelAfsluttet, panelAktive;
-    private JButton aflever;
+    private JButton aflever,download;
     private JTabbedPane afleveringer;
     private JTable afleveringerAfleveret,afleveringerIkkeAfleveret;
 
@@ -73,6 +73,7 @@ public class Elev extends JFrame{
         afleveringer = new JTabbedPane();
         add(afleveringer);
         aflever = new JButton();
+        download = new JButton();
         
         
         panelAktive = new JPanel();
@@ -86,6 +87,7 @@ public class Elev extends JFrame{
         panelAktive.add(afleveringerIkkeAfleveret);
         panelAfsluttet.add(afleveringerAfleveret);
         panelAktive.add(aflever);
+        panelAktive.add(download);
         
         panelAktive.setLayout(null);
         panelAfsluttet.setLayout(null);
@@ -119,13 +121,17 @@ public class Elev extends JFrame{
         
         aflever.setBounds(x/2, y-200, 150, 100);
         aflever.setText("Aflever");
-        /*combo box
-        /button
-        /JTable (til at vise database)
-        /2 lærer og 2 elever
-        /popup box til indput til databasen
-        /
-        */
+        
+        download.setBounds(x/2-300, y-200, 150, 100);
+        download.setText("Hent baskrivelse");
+        download.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DownloadElevPopup down = new DownloadElevPopup();
+                down.koer();
+            }
+        });
+        
         
         
     }

@@ -5,7 +5,6 @@
  */
 package gui;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -18,30 +17,29 @@ import javax.swing.JTextField;
  *
  * @author Tobias
  */
-public class DownloadLaererPopup extends JFrame{
+public class DownloadElevPopup extends JFrame{
     private JLabel fag,overskrift,fil;
     private JTextField fagField,filField;
     private JPanel popupPanel;
     private JButton download;
 
 
-    public DownloadLaererPopup(){
+    public DownloadElevPopup(){
 
 }
     
     public void koer(){
         
     
-        setTitle("Ludus kopi - Lærer Popup");
+        setTitle("Ludus kopi - Elev Popup");
         setSize(300,205);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 
-
-        fag = new JLabel();
-        fagField = new JTextField();
         fil = new JLabel();
         filField = new JTextField();
+        fag = new JLabel();
+        fagField = new JTextField();
         overskrift = new JLabel();
         
 
@@ -54,11 +52,11 @@ public class DownloadLaererPopup extends JFrame{
         popupPanel.add(fag);
         popupPanel.add(fagField);
         
-        popupPanel.add(filField);
-        popupPanel.add(fil);
-        
         popupPanel.add(download);
         popupPanel.add(overskrift);
+        
+        popupPanel.add(fil);
+        popupPanel.add(filField);
 
         overskrift.setBounds(100, 10, 150, 20);
         overskrift.setText("Opret aflevering");
@@ -69,6 +67,7 @@ public class DownloadLaererPopup extends JFrame{
         fagField.setBounds(50, 50, 200, 25);
         fagField.setToolTipText("f.eks.: Matematik");
         
+        
         fil.setBounds(50, 80, 200, 20);
         fil.setText("Skriv stien til download sted");
         filField.setBounds(50, 100, 200, 25);
@@ -76,8 +75,6 @@ public class DownloadLaererPopup extends JFrame{
 
         download.setBounds(100,130,100,30);
         download.setText("Download");
-
-        
         
 
         download.addActionListener(new ActionListener(){
