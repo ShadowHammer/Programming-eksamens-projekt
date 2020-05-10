@@ -74,22 +74,27 @@ public class LoginPage extends JFrame{
         loginKnap.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Hej");
+                //Brugernavn og kode ord til en lærer
                 String passInCodeLære = "1234";
                 Object userLære = "Hej";
                 
+                //Brugernavn og kodeor til en elev
                 String passInCodeElev = "4321";
                 Object userElev = "Jeg";
                 
+                //Henter det som man har skrevet ind i password feltet
                 char[] pass = password.getPassword();
 
+                //tester om loginnet passer med lærens login oplysninger
                 if (String.valueOf(pass).equals(passInCodeLære) && username.getText().equals(userLære)){
+                    //den åbner det nye vindue og lukker loginsiden
                     Laerer laerer = new Laerer();
                     laerer.creatComponents(x,y);
                     dispose();
                 }
-                
+                //tester om loginnet passer med elevens login oplysninger
                 if (String.valueOf(pass).equals(passInCodeElev) && username.getText().equals(userElev)){
+                    //den åbner det nye vindue og lukker loginsiden
                     Elev elev = new Elev();
                     elev.creatComponents(x,y);
                     dispose();
