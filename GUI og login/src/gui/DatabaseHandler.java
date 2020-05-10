@@ -13,7 +13,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,18 +48,6 @@ public class DatabaseHandler {
         return conn;
     }
     
-/*    public void disconnect(){
-        if (null != this.conn){
-            try{
-                if(conn != null){
-                    conn.close();
-                    System.out.println("closed");
-                }
-            }catch(SQLException e){
-                System.out.println("Fejl" + e.getMessage());
-            }
-        }
-    }*/
     
     private byte[] readFile (String filePATH){
         ByteArrayOutputStream bos = null;
@@ -127,22 +114,25 @@ public class DatabaseHandler {
      * @param assignmentID
      * @param assignmentPATH
      */
-    public void handIn(int assignmentID, String assignmentPATH){
-        String sql = "INSERT INTO besvarelser (besvarelse, ext, opgaveID) VALUES (?,?,?);";
+    public void handIn(int assignmentID, String pupil, String assignmentPATH){
+        String sql = "INSERT INTO besvarelser (elev, besvarelse, ext, opgaveID) VALUES (?,?,?,?);";
         String sql2= "INSERT INTO assignments (afleveret) VALUES (?);";
         PreparedStatement stmt;
         
         try(Connection conn = connect()){
             stmt = conn.prepareStatement(sql);
             
-            stmt.setBytes(1,readFile(assignmentPATH));
-            stmt.setString(2,fileExtension);
-            stmt.setInt(3,assignmentID);
+            stmt.setString(1,pupil);
+            stmt.setBytes(2,readFile(assignmentPATH));
+            stmt.setString(3,fileExtension);
+            stmt.setInt(4,assignmentID);
             stmt.execute();
             
             stmt = conn.prepareStatement(sql2);
             stmt.setBoolean(1, true);
             stmt.execute();
+            
+            conn.close();
         }catch (SQLException ex) {
             System.out.println("Fejl " + ex.getMessage());
         }
@@ -160,15 +150,16 @@ public class DatabaseHandler {
     public void downloadFile(int assignmentID, String destPATH, boolean isDescribtion){
         String column;
         String sql;
+        String fileName="Opgave_Beskrivelse";
         ResultSet rs = null;
         FileOutputStream fos = null;
         PreparedStatement stmt = null;
         
         if (isDescribtion){
-            sql = "SELECT beskrivelse FROM assignments WHERE id = ?";
+            sql = "SELECT beskrivelse, ext FROM assignments WHERE id = ?";
             column = "beskrivelse";
         }else {
-            sql = "SELECT besvarelse FROM besvarelser WHERE opgaveID = ?";
+            sql = "SELECT elev, besvarelse, ext FROM besvarelser WHERE opgaveID = ?";
             column = "besvarelse";
         }
         
@@ -176,33 +167,52 @@ public class DatabaseHandler {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1,assignmentID);
             rs = stmt.executeQuery();
+            if(!isDescribtion){
+                downloadAnswers(destPATH,rs);
+            }else{
+                File file = new File(destPATH + fileName + rs.getString("ext"));
+                fos = new FileOutputStream(file);
+                System.out.println("Writing BLOB to file " + file.getAbsolutePath());
+                InputStream input = rs.getBinaryStream(column);    
             
-            File file = new File(destPATH);
-            fos = new FileOutputStream(file);
-            
-            System.out.println("Writing BLOB to file " + file.getAbsolutePath());
-            while (rs.next()) {
+                while (rs.next()) {
+                    byte[] buffer = new byte[1024];
+                    while (input.read(buffer)>0){
+                        fos.write(buffer);
+                    }
+                }
                 
-                InputStream input = rs.getBinaryStream(column);
+            conn.close();
+            }
+        }catch(SQLException  | IOException e){
+            System.out.println("fejl "+ e.getMessage());
+        }
+    }
+    
+    
+    
+    private void downloadAnswers( String destPATH, ResultSet rs){
+        FileOutputStream fos = null;
+        
+        try(Connection conn = connect()){          
+            while (rs.next()) {
+                File file = new File(destPATH + rs.getString("elev")+rs.getString("ext"));
+                fos = new FileOutputStream(file);
+                System.out.println("Writing BLOB to file " + file.getAbsolutePath());
+                InputStream input = rs.getBinaryStream("besvarelse");
                 byte[] buffer = new byte[1024];
+                
                 while (input.read(buffer)>0){
                     fos.write(buffer);
                 }
             }
+            
+            conn.close();
         }catch(SQLException  | IOException e){
             System.out.println("fejl "+ e.getMessage());
-        } finally {
-            try{
-                if (rs != null)
-                    rs.close();
-                if (stmt != null)
-                    stmt.close();
-                if (fos != null)
-                    fos.close();
-            
-            }catch(SQLException  | IOException e){
-                System.out.println("fejl "+ e.getMessage());
-            }
         }
     }
+    
+       
+   
 }
