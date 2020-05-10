@@ -16,23 +16,23 @@ import javax.swing.JTextField;
 /**
  *
  * @author Tobias
+ * @author William
  */
 public class DownloadElevPopup extends JFrame{
     private JLabel fag,overskrift,fil;
     private JTextField fagField,filField;
     private JPanel popupPanel;
     private JButton download;
-
+    private DatabaseHandler DB = new DatabaseHandler();
 
     public DownloadElevPopup(){
-
+        
 }
     
-    public void koer(){
+    public void koer(int selectedRow){
         
-    
         setTitle("Ludus kopi - Elev Popup");
-        setSize(300,205);
+        setSize(300,150);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 
@@ -58,35 +58,38 @@ public class DownloadElevPopup extends JFrame{
         popupPanel.add(fil);
         popupPanel.add(filField);
 
-        overskrift.setBounds(100, 10, 150, 20);
-        overskrift.setText("Opret aflevering");
+        /*overskrift.setBounds(100, 10, 150, 20);
+        overskrift.setText("Download");
 
 
-        fag.setBounds(50, 30, 200, 20);
+        /*fag.setBounds(50, 30, 200, 20);
         fag.setText("Skriv faget som aflevering er i");
         fagField.setBounds(50, 50, 200, 25);
         fagField.setToolTipText("f.eks.: Matematik");
+        */
         
-        
-        fil.setBounds(50, 80, 200, 20);
+        fil.setBounds(50, 10, 200, 20);
         fil.setText("Skriv stien til download sted");
-        filField.setBounds(50, 100, 200, 25);
+        filField.setBounds(50, 30, 200, 25);
         filField.setToolTipText("Skriv hele stien til den mappe filen skal ligge i");
 
-        download.setBounds(100,130,100,30);
+        download.setBounds(100,60,100,30);
         download.setText("Download");
         
 
         download.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String faget = "";
-                    faget = fagField.getText();
+                    /*String faget = "";
+                    faget = fagField.getText();*/
                     
                     String filen = "";
                     filen = filField.getText();
-
-                    System.out.println(faget);
+                    
+                    
+                    DB.downloadFile(selectedRow, filen, true);
+                    
+                    //System.out.println(faget);
                     System.out.println(filen);
 
                 }

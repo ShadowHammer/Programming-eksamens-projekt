@@ -19,17 +19,17 @@ import javax.swing.JTextField;
  * @author Tobias
  */
 public class DownloadLaererPopup extends JFrame{
-    private JLabel fag,overskrift,fil;
-    private JTextField fagField,filField;
+    private JLabel guide,overskrift,fil;
+    private JTextField filField;
     private JPanel popupPanel;
     private JButton download;
-
+    private DatabaseHandler DB = new DatabaseHandler();
 
     public DownloadLaererPopup(){
 
 }
     
-    public void koer(){
+    public void koer(int selectedRow){
         
     
         setTitle("Ludus kopi - Lærer Popup");
@@ -37,9 +37,7 @@ public class DownloadLaererPopup extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 
-
-        fag = new JLabel();
-        fagField = new JTextField();
+        guide = new JLabel();
         fil = new JLabel();
         filField = new JTextField();
         overskrift = new JLabel();
@@ -51,8 +49,6 @@ public class DownloadLaererPopup extends JFrame{
         add(popupPanel);
         popupPanel.setLayout(null);
 
-        popupPanel.add(fag);
-        popupPanel.add(fagField);
         
         popupPanel.add(filField);
         popupPanel.add(fil);
@@ -61,20 +57,15 @@ public class DownloadLaererPopup extends JFrame{
         popupPanel.add(overskrift);
 
         overskrift.setBounds(100, 10, 150, 20);
-        overskrift.setText("Opret aflevering");
+        overskrift.setText("Hent besvarelse");
 
-
-        fag.setBounds(50, 30, 200, 20);
-        fag.setText("Skriv faget som aflevering er i");
-        fagField.setBounds(50, 50, 200, 25);
-        fagField.setToolTipText("f.eks.: Matematik");
         
-        fil.setBounds(50, 80, 200, 20);
+        fil.setBounds(50, 30, 200, 20);
         fil.setText("Skriv stien til download sted");
-        filField.setBounds(50, 100, 200, 25);
+        filField.setBounds(50, 50, 200, 25);
         filField.setToolTipText("Skriv hele stien til den mappe filen skal ligge i");
 
-        download.setBounds(100,130,100,30);
+        download.setBounds(110,80,100,30);
         download.setText("Download");
 
         
@@ -83,13 +74,11 @@ public class DownloadLaererPopup extends JFrame{
         download.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String faget = "";
-                    faget = fagField.getText();
                     
-                    String filen = "";
-                    filen = filField.getText();
-
-                    System.out.println(faget);
+                    String filen = filField.getText();
+                    
+                    DB.downloadFile(selectedRow, filen, false);
+                    
                     System.out.println(filen);
 
                 }
