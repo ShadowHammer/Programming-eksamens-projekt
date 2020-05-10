@@ -19,6 +19,7 @@ import javax.swing.JTextField;
  * @author William
  */
 public class ElevPopup extends JFrame{
+    // Her laver jeg instancer af de forskellige komponenter jeg bruger
     private JLabel fil,elevNavn,overskrift;
     private JTextField elevField, filField;
     private JPanel popupPanel;
@@ -28,6 +29,7 @@ public class ElevPopup extends JFrame{
     public ElevPopup(){
         
     }
+    // opretter komponenterne i vinduet
     public void koer(int selectedRow){
         
     
@@ -35,7 +37,8 @@ public class ElevPopup extends JFrame{
         setSize(300,205);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
-
+        
+        // Her sætter jeg variablerne
         fil = new JLabel();
         elevNavn = new JLabel();
         overskrift = new JLabel();
@@ -57,7 +60,8 @@ public class ElevPopup extends JFrame{
         
         popupPanel.add(aflever);
         popupPanel.add(overskrift);
-
+        
+        //Her indsætter jeg komponenterne forskellige steder i vinduet efter kordinater
         overskrift.setBounds(100, 10, 150, 20);
         overskrift.setText("Aflever aflevering");
 

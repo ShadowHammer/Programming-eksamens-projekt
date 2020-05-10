@@ -19,7 +19,8 @@ import javax.swing.JTextField;
  * @author Tobias
  */
 public class DownloadLaererPopup extends JFrame{
-    private JLabel guide,overskrift,fil;
+    // Her laver jeg instancer af de forskellige komponenter jeg bruger
+    private JLabel overskrift,fil;
     private JTextField filField;
     private JPanel popupPanel;
     private JButton download;
@@ -28,7 +29,7 @@ public class DownloadLaererPopup extends JFrame{
     public DownloadLaererPopup(){
 
 }
-    
+    // opretter komponenterne i vinduet
     public void koer(int selectedRow){
         
     
@@ -37,15 +38,13 @@ public class DownloadLaererPopup extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 
-        guide = new JLabel();
+        // Her sætter jeg variablerne
         fil = new JLabel();
         filField = new JTextField();
         overskrift = new JLabel();
-        
-
         download = new JButton();
-
         popupPanel = new JPanel();
+        
         add(popupPanel);
         popupPanel.setLayout(null);
 
@@ -56,6 +55,7 @@ public class DownloadLaererPopup extends JFrame{
         popupPanel.add(download);
         popupPanel.add(overskrift);
 
+        //Her indsætter jeg komponenterne forskellige steder i vinduet efter kordinater
         overskrift.setBounds(100, 10, 150, 20);
         overskrift.setText("Hent besvarelse");
 

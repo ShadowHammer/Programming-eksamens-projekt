@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  */
 public class LoginPage extends JFrame{
 
-    
+    // Her laver jeg instancer af de forskellige komponenter jeg bruger
     private JPanel panelLogin;
     private JLabel overskrift, labUser, labPass;
     private JButton loginKnap;
@@ -33,11 +33,11 @@ public class LoginPage extends JFrame{
         creatComponents(x,y);
         
     }
-    
+    // opretter komponenterne i vinduet
     private void creatComponents(int x, int y) {
 
         
-        
+        // Her sætter jeg variablerne
         panelLogin = new JPanel();
         add(panelLogin);
         panelLogin.setLayout(null);
@@ -48,6 +48,8 @@ public class LoginPage extends JFrame{
         password = new JPasswordField();
         loginKnap = new JButton("Login");
         
+        
+        //Her indsætter jeg komponenterne forskellige steder i vinduet efter kordinater
         panelLogin.add(overskrift);
         overskrift.setText("Skriv dit bruger navn og kode");
         overskrift.setBounds(x/2-80, 100, 250, 20);

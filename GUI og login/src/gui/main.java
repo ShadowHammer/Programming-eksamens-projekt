@@ -5,10 +5,7 @@
  */
 package gui;
 
-import java.io.IOException;
-import java.util.Scanner;
 /**
- *
  * @author Tobias
  */
 public class main {

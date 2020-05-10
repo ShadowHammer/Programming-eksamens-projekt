@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,22 +38,6 @@ public class Elev extends JFrame{
         setSize(x,y);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        
-        
-        
-        Object [][] data = {
-            {"Matematik","02.01.2000","TP","Opgave",""},
-            {"Matematik","02.01.2001","TP","Opgave",""},
-            {"Matematik","02.01.2002","TP","Opgave",""},
-            {"Matematik","02.01.2003","TP","Opgave",""},
-            {"Matematik","02.01.2004","TP","Opgave",""},
-            {"Matematik","02.01.2005","TP","Opgave",""},
-            {"Matematik","02.01.2006","TP","Opgave",""},
-            {"Matematik","02.01.2007","TP","Opgave",""},
-            {"Matematik","02.01.2007","TP","Opgave",""}
-        };
-
-
         
         String[] columnNames = {
           "Fag",

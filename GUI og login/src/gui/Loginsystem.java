@@ -20,10 +20,10 @@ public class Loginsystem {
 
     /**
      * @param args the command line arguments
-     * 
-     * Jeg har brugt følgende link til hjælp med at lave kryptering af kodeord
-     * https://www.javaguides.net/2020/02/java-sha-256-hash-with-salt-example.html
      */
+    //Jeg har brugt følgende link til hjælp med at lave kryptering af kodeord
+    //https://www.javaguides.net/2020/02/java-sha-256-hash-with-salt-example.html
+     
     // jeg laver 3 arraylists
     public static ArrayList<byte[]> saltArray = new ArrayList<>();
     public static ArrayList<String>passwordArray = new ArrayList<>();

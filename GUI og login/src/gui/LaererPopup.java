@@ -18,6 +18,7 @@ import javax.swing.JTextField;
  * @author Tobias
  */
 public class LaererPopup extends JFrame {
+    // Her laver jeg instancer af de forskellige komponenter jeg bruger
     private JLabel fil,dato,fag,overskrift,filtype;
     private JTextField fagField,datoField, filField,filtypeField;
     private JPanel popupPanel;
@@ -27,6 +28,7 @@ public class LaererPopup extends JFrame {
     public LaererPopup(){
         
     }
+    // opretter komponenterne i vinduet
     public void koer(){
         
     
@@ -34,7 +36,8 @@ public class LaererPopup extends JFrame {
         setSize(300,345);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
-
+        
+        // Her sætter jeg variablerne
         fil = new JLabel();
         dato = new JLabel();
         fag = new JLabel();
@@ -63,7 +66,8 @@ public class LaererPopup extends JFrame {
         
         popupPanel.add(opret);
         popupPanel.add(overskrift);
-
+        
+        //Her indsætter jeg komponenterne forskellige steder i vinduet efter kordinater
         overskrift.setBounds(100, 10, 150, 20);
         overskrift.setText("Opret aflevering");
 

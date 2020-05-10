@@ -19,6 +19,7 @@ import javax.swing.JTextField;
  * @author William
  */
 public class DownloadElevPopup extends JFrame{
+    // Her laver jeg instancer af de forskellige komponenter jeg bruger
     private JLabel fag,overskrift,fil;
     private JTextField fagField,filField;
     private JPanel popupPanel;
@@ -28,14 +29,14 @@ public class DownloadElevPopup extends JFrame{
     public DownloadElevPopup(){
         
 }
-    
+    // opretter komponenterne i vinduet
     public void koer(int selectedRow){
         
         setTitle("Ludus kopi - Elev Popup");
         setSize(300,150);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
-
+        // Her sætter jeg variablerne
         fil = new JLabel();
         filField = new JTextField();
         fag = new JLabel();
@@ -57,17 +58,8 @@ public class DownloadElevPopup extends JFrame{
         
         popupPanel.add(fil);
         popupPanel.add(filField);
-
-        /*overskrift.setBounds(100, 10, 150, 20);
-        overskrift.setText("Download");
-
-
-        /*fag.setBounds(50, 30, 200, 20);
-        fag.setText("Skriv faget som aflevering er i");
-        fagField.setBounds(50, 50, 200, 25);
-        fagField.setToolTipText("f.eks.: Matematik");
-        */
         
+        //Her indsætter jeg komponenterne forskellige steder i vinduet efter kordinater
         fil.setBounds(50, 10, 200, 20);
         fil.setText("Skriv stien til download sted");
         filField.setBounds(50, 30, 200, 25);
